@@ -1,29 +1,30 @@
-reset; 
+reset;
 model 10623061.mod;
-data minimart-2.dat;
+# model model2.mod; 
+data minimart-1.dat;
 
 option solver cplex;
 
 solve;
 
 # display sum {house in houses} (Dc[house] * x[house]);
-# display range; 
-# display Cx; 
-# display Cy; 
-# display Dc; 
-# display usable; 
+# display range;
+# display Cx;
+# display Cy;
+# display Dc;
+# display usable;
 # display HOUSES;
 
-for {i in HOUSES} {
-	# display sum {j in HOUSES} usable[j] * y[i,j]; 
-	# display x[i];
-}
+#for {i in HOUSES} {
+#	display sum {j in HOUSES} usable[j] * y[i,j];
+#	display x[i];
+#}
 
-for {house in HOUSES} {
-	# display x[house]; 
-	# display usable[house]; 
-}
+#for {house in HOUSES} {
+#	display x[house];
+#	display usable[house];
+#}
 
-for {(i,j) in MANY_HOUSES} {
-	# display y[i,j] * sqrt( ((Cx[i] - Cx[j])**2) + ((Cy[i] - Cy[j])**2) ) - range * y[i,j]; 
-}
+#for {(i,j) in MANY_HOUSES} {
+#	display y[i,j] * sqrt( ((Cx[i] - Cx[j])**2) + ((Cy[i] - Cy[j])**2) ) - range * y[i,j];
+#}

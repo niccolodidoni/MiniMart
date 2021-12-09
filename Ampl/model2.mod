@@ -16,7 +16,7 @@ set RANGE := setof{i in HOUSES, j in HOUSES: distance[i,j] <= range} (i,j);
 
 # VARIABLES
 var x{HOUSES}, binary;               # if a market is build at i
-var z{(i,j) in MANY_HOUSES}, binary; # if i is in range of market j
+var y{(i,j) in MANY_HOUSES}, binary; # if i is in range of j
 
 
 # OBJECTIVE FUNCTION
@@ -24,14 +24,8 @@ minimize obj:
 	sum {house in HOUSES} (Dc[house] * x[house]); 
 
 # CONSTRAINTS
-s.t. is_market{(house,market) in MANY_HOUSES}: 
-	x[market] >= z[house,market]; 
-
 s.t. at_least{house in HOUSES}: 
-	sum {market in HOUSES} z[house,market] >= 1; 
+	sum {market in HOUSES} y[house,market] >= 1; 
 	
 s.t. market_place{house in HOUSES}: 
 	x[house] <= usable[house]; 
-	
-s.t. in_range{(i,j) in MANY_HOUSES}: 
-	( z[i,j] * distance[i, j] ) - ( range * z[i,j] ) <= 0; 
