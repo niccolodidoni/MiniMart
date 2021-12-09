@@ -1,6 +1,5 @@
 reset;
 model 10623061.mod;
-# model model2.mod; 
 data minimart-1.dat;
 
 option solver cplex;
